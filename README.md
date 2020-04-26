@@ -1,0 +1,1 @@
+The purpose of this tool is to trigger errors in the SWKBD API.
