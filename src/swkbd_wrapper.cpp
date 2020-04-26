@@ -6,7 +6,7 @@
  ****************************************************************/
 
 #include <stdint.h>
-#include <string>
+#include <cstring>
 
 #include <coreinit/memdefaultheap.h>
 
@@ -32,28 +32,6 @@ void Swkbd_SetEnableOkButton(bool enable)
 	nn::swkbd::SetEnableOkButton(enable);
 }
 
-char *Swkbd_GetInputFormString()
-{
-	const char16_t *cppRet = nn::swkbd::GetInputFormString();
-	if(cppRet == NULL)
-		return NULL;
-	
-	size_t i = 0;
-	while(cppRet[i] != u'\0')
-		i++;
-	
-	char *outputStr = (char*)MEMAllocFromDefaultHeap(sizeof(char) * ++i);
-	if(outputStr == NULL)
-		return NULL;
-	
-	i = 0;
-	do
-		outputStr[i] = cppRet[i] > 0x7F ? '?' : (char)cppRet[i];
-	while(outputStr[i++] != '\0');
-	
-	return outputStr;
-}
-
 void Swkbd_Calc(const Swkbd_ControllerInfo controllerInfo)
 {
 	nn::swkbd::Calc(*(nn::swkbd::ControllerInfo*)&controllerInfo);
@@ -77,16 +55,6 @@ void Swkbd_DrawTV()
 void Swkbd_DrawDRC()
 {
 	nn::swkbd::DrawDRC();
-}
-
-bool Swkbd_IsDecideOkButton(bool *outIsSelected)
-{
-	return nn::swkbd::IsDecideOkButton(outIsSelected);
-}
-
-bool Swkbd_IsDecideCancelButton(bool *outIsSelected)
-{
-	return nn::swkbd::IsDecideCancelButton(outIsSelected);
 }
 
 bool Swkbd_DisappearInputForm()

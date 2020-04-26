@@ -139,15 +139,11 @@ uint32_t Swkbd_GetWorkMemorySize(uint32_t unk);
 bool Swkbd_AppearInputForm(const Swkbd_AppearArg args);
 bool Swkbd_Create(const Swkbd_CreateArg args);
 void Swkbd_SetEnableOkButton(bool enable);
-char *Swkbd_GetInputFormString();
-void Swkbd_SetInputFormString(const char *str);
 void Swkbd_Calc(const Swkbd_ControllerInfo controllerInfo);
 bool Swkbd_IsNeedCalcSubThreadFont();
 void Swkbd_CalcSubThreadFont();
 void Swkbd_DrawTV();
 void Swkbd_DrawDRC();
-bool Swkbd_IsDecideOkButton(bool *outIsSelected);
-bool Swkbd_IsDecideCancelButton(bool *outIsSelected);
 bool Swkbd_DisappearInputForm();
 void Swkbd_Destroy();
 

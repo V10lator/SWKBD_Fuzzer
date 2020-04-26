@@ -16,27 +16,9 @@
 	extern "C" {
 #endif
 
-extern VPADStatus vpad;
-
-typedef enum
-{
-	CHECK_NONE,			//No check
-	CHECK_NUMERICAL,	//Only numbers
-	CHECK_HEXADECIMAL,	//Only hex
-	CHECK_NOSPECIAL,	//Only letters or numbers
-	CHECK_URL,
-} KeyboardChecks;
-
-typedef enum
-{
-	KEYBOARD_TYPE_RESTRICTED,
-	KEYBOARD_TYPE_NORMAL
-} KeyboardType;
-
 bool SWKBD_Init();
 void SWKBD_Shutdown();
 
-void readInput();
 bool showKeyboard();
 
 #ifdef __cplusplus

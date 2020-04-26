@@ -48,7 +48,7 @@ bool SWKBD_Show()
 	appearArg.keyboardArg.receiverArg.unk_0x10 = 0;
 	appearArg.keyboardArg.receiverArg.unk_0x14 = 2;
 	
-	appearArg.inputFormArg.unk_0x00 = 0;
+	appearArg.inputFormArg.unk_0x00 = 1;
 	appearArg.inputFormArg.unk_0x04 = -1;
 	appearArg.inputFormArg.unk_0x08 = (uint32_t)NULL;
 	appearArg.inputFormArg.unk_0x0C = (uint32_t)NULL;
@@ -163,7 +163,6 @@ bool showKeyboard()
 	
 	WHBLogPrintf("SWKBD initialised successfully");
 	
-	bool dummy;
 	while(true)
 	{
 		readInput();
@@ -171,19 +170,11 @@ bool showKeyboard()
 		vpad.tpFiltered2 = vpad.tpNormal = vpad.tpFiltered1;
 		SWKBD_Render();
 
-		if(Swkbd_IsDecideOkButton(&dummy) || vpad.trigger == VPAD_BUTTON_A)
+		if(vpad.trigger == VPAD_BUTTON_A || vpad.trigger == VPAD_BUTTON_B)
 		{
-			char *outputStr = Swkbd_GetInputFormString();
-			WHBLogPrintf("SWKBD Ok button pressed: %s", outputStr);
-			MEMFreeToDefaultHeap(outputStr);
-			SWKBD_Hide();
-			return true;
-		}
-
-		if (Swkbd_IsDecideCancelButton(&dummy) || vpad.trigger == VPAD_BUTTON_B) {
 			WHBLogPrintf("SWKBD Cancel button pressed");
 			SWKBD_Hide();
-			return false;
+			return true;
 		}
 	}
 }

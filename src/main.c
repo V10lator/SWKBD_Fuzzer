@@ -28,7 +28,8 @@ int main()
 	
 	for(int i = 0; i < 10; i++)
 	{
-		showKeyboard();
+		if(!showKeyboard())
+			break;
 		blankScreen();
 	}
 	
@@ -37,6 +38,7 @@ int main()
 	SWKBD_Shutdown();
 	WHBLogPrintf("SWKBD closed");
 	
+	blankScreen();
 	shutdownScreen();
 	WHBLogPrintf("OSScreen closed");
 	
