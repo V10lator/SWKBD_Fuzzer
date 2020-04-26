@@ -38,12 +38,12 @@ int main()
 	SWKBD_Shutdown();
 	WHBLogPrintf("SWKBD closed");
 	
+	FSShutdown();
+	WHBLogPrintf("FS closed");
+	
 	blankScreen();
 	shutdownScreen();
 	WHBLogPrintf("OSScreen closed");
-	
-	FSShutdown();
-	WHBLogPrintf("FS closed");
 	
 	WHBLogUdpDeinit();
 	return 0;

@@ -27,33 +27,7 @@ bool Swkbd_AppearInputForm()
 {
 	nn::swkbd::AppearArg appearArg;
 	
-	OSBlockSet(&appearArg.keyboardArg.configArg, 0, sizeof(nn::swkbd::AppearArg));
-	
 	appearArg.keyboardArg.configArg.languageType = nn::swkbd::LanguageType::English;
-	appearArg.keyboardArg.configArg.unk_0x04 = 4;
-	appearArg.keyboardArg.configArg.unk_0x08 = 0;
-	appearArg.keyboardArg.configArg.unk_0x0C = 0x7FFFF;
-	appearArg.keyboardArg.configArg.unk_0x10 = 19;
-	appearArg.keyboardArg.configArg.unk_0x14 = -1;
-	appearArg.keyboardArg.configArg.unk_0x9C = 1;
-	appearArg.keyboardArg.configArg.unk_0xA4 = -1;
-	
-	appearArg.keyboardArg.receiverArg.unk_0x00 = 0;
-	appearArg.keyboardArg.receiverArg.unk_0x04 = 0;
-	appearArg.keyboardArg.receiverArg.unk_0x08 = 0;
-	appearArg.keyboardArg.receiverArg.unk_0x0C = 0;
-	appearArg.keyboardArg.receiverArg.unk_0x10 = 0;
-	appearArg.keyboardArg.receiverArg.unk_0x14 = 2;
-	
-	appearArg.inputFormArg.unk_0x00 = 1;
-	appearArg.inputFormArg.unk_0x04 = -1;
-	appearArg.inputFormArg.unk_0x08 = (uint32_t)nullptr;
-	appearArg.inputFormArg.unk_0x0C = (uint32_t)nullptr;
-	appearArg.inputFormArg.unk_0x14 = 0;
-	appearArg.inputFormArg.unk_0x18 = 0x00008000;
-	appearArg.inputFormArg.unk_0x1C = true;
-	appearArg.inputFormArg.unk_0x1D = true;
-	appearArg.inputFormArg.unk_0x1E = true;
 	appearArg.inputFormArg.maxTextLength = -1;
 	return nn::swkbd::AppearInputForm(appearArg);
 }
@@ -71,7 +45,6 @@ bool Swkbd_Create()
 	FSAddClient(swkbdCli, 0);
 	
 	createArg.regionType = nn::swkbd::RegionType::Europe;
-	createArg.unk_0x08 = 0;
 	createArg.fsClient = swkbdCli;
 	return nn::swkbd::Create(createArg);
 }
