@@ -1,1 +1,3 @@
 The purpose of this tool is to trigger errors in the SWKBD API.
+
+Currently this triggers a bug similiar to #1826671 at Nintendo Dev English Language Support Forum but this bug should have been closed since Cafe SDK 2.07.03 patch 2 but then again we use devkitPro, so...
