@@ -31,25 +31,16 @@ void shutdownScreen()
 	libgui_memoryRelease();
 }
 
-void blankScreen()
+void drawFrame(bool kbd)
 {
 	renderer->prepareTvRendering();
+	if(kbd)
+		Swkbd_DrawTV();
 	renderer->tvDrawDone();
 	
 	renderer->prepareDrcRendering();
-	renderer->drcDrawDone();
-	
-	renderer->waitForVSync();
-}
-
-void drawKeyboard()
-{
-	renderer->prepareTvRendering();
-	Swkbd_DrawTV();
-	renderer->tvDrawDone();
-	
-	renderer->prepareDrcRendering();
-	Swkbd_DrawDRC();
+	if(kbd)
+		Swkbd_DrawDRC();
 	renderer->drcDrawDone();
 	
 	renderer->waitForVSync();

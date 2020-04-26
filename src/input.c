@@ -52,7 +52,7 @@ void SWKBD_Render()
 	if (Swkbd_IsNeedCalcSubThreadFont())
 		Swkbd_CalcSubThreadFont();
 
-	drawKeyboard();
+	drawFrame(true);
 }
 
 bool SWKBD_Init()

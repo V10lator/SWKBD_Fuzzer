@@ -5,6 +5,8 @@
  * Licensed under the MIT license (see LICENSE.txt for details) *
  ****************************************************************/
 
+#include <stdbool.h>
+
 #include <coreinit/filesystem.h>
 #include <whb/log.h>
 #include <whb/log_udp.h>
@@ -18,7 +20,7 @@ int main()
 	WHBLogPrintf("Initialising libraries...");
 	
 	initScreen();
-	blankScreen();
+	drawFrame(false);
 	WHBLogPrintf("Screen initialized!");
 	
 	FSInit(); // We need to start this before the SWKBD.
@@ -30,7 +32,7 @@ int main()
 	{
 		if(!showKeyboard())
 			break;
-		blankScreen();
+		drawFrame(false);
 	}
 	
 	WHBLogPrintf("Deinitializing libraries...");
@@ -41,7 +43,7 @@ int main()
 	FSShutdown();
 	WHBLogPrintf("FS closed");
 	
-	blankScreen();
+	drawFrame(false);
 	shutdownScreen();
 	WHBLogPrintf("OSScreen closed");
 	

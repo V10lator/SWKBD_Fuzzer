@@ -8,14 +8,15 @@
 #ifndef SWKBDFU_GUI_WRAPPER_H
 #define SWKBDFU_GUI_WRAPPER_H
 
+#include <stdbool.h>
+
 #ifdef __cplusplus
 	extern "C" {
 #endif
 
 void initScreen();
 void shutdownScreen();
-void blankScreen();
-void drawKeyboard();
+void drawFrame(bool bkd);
 
 #ifdef __cplusplus
 	}
