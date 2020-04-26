@@ -27,6 +27,8 @@ void initScreen()
 
 void shutdownScreen()
 {
+	renderer->tvEnable(false);
+	renderer->drcEnable(false);
 	delete renderer;
 	libgui_memoryRelease();
 }

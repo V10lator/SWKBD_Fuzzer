@@ -16,7 +16,6 @@
 #include "swkbd_wrapper.h"
 
 nn::swkbd::CreateArg createArg;
-FSClient *swkbdCli = NULL;
 
 uint32_t Swkbd_GetWorkMemorySize(uint32_t unk)
 {
@@ -34,18 +33,17 @@ bool Swkbd_AppearInputForm()
 
 bool Swkbd_Create()
 {
-	swkbdCli = (FSClient *)MEMAllocFromDefaultHeap(sizeof(FSClient));
+	createArg.fsClient = (FSClient *)MEMAllocFromDefaultHeap(sizeof(FSClient));
 	createArg.workMemory = MEMAllocFromDefaultHeap(Swkbd_GetWorkMemorySize(0));
-	if(swkbdCli == NULL || createArg.workMemory == NULL)
+	if(createArg.fsClient == NULL || createArg.workMemory == NULL)
 	{
 		WHBLogPrintf("SWKBD: Can't allocate memory!");
 		return false;
 	}
 	
-	FSAddClient(swkbdCli, 0);
+	FSAddClient(createArg.fsClient, 0);
 	
 	createArg.regionType = nn::swkbd::RegionType::Europe;
-	createArg.fsClient = swkbdCli;
 	return nn::swkbd::Create(createArg);
 }
 
@@ -99,10 +97,10 @@ void Swkbd_Destroy()
 		createArg.workMemory = NULL;
 	}
 	
-	if(swkbdCli != NULL)
+	if(createArg.fsClient != NULL)
 	{
-		FSDelClient(swkbdCli, 0);
-		MEMFreeToDefaultHeap(swkbdCli);
-		swkbdCli = NULL;
+		FSDelClient(createArg.fsClient, 0);
+		MEMFreeToDefaultHeap(createArg.fsClient);
+		createArg.fsClient = NULL;
 	}
 }
